@@ -10,8 +10,23 @@ import Foundation
 struct MemoryGame<CardContent> {
     var cards: Array<Card>
     
-    func choose(card: Card) {
+    // mutating function sets struct reactive to the action
+    mutating func choose(card: Card) {
         print("card chosen: \(card)")
+        
+        let chosenIndex: Int = self.index(of: card)
+        cards[chosenIndex].isFaceUp = !cards[chosenIndex].isFaceUp
+    }
+    
+    // runs the Array Card of the search Card selected
+    func index(of card: Card) -> Int {
+        for index in 0..<cards.count {
+            if cards[index].id == card.id {
+                return index
+            }
+        }
+        
+        return 0 // TODO: bogus!
     }
     
     init(numberOfPairOfCards: Int, cardContentFactory: (Int) -> CardContent) {
