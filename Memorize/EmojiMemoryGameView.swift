@@ -4,6 +4,7 @@
 //
 //  Created by Anthony José on 30/03/21.
 //
+// View
 
 import SwiftUI
 
@@ -12,13 +13,13 @@ struct EmojiMemoryGameView: View {
     @ObservedObject var viewModel: EmojiMemoryGame
     
     var body: some View {
-        return HStack() {
-            ForEach(viewModel.cards) { card in
-                CardView(card: card).onTapGesture {
-                    viewModel.choose(card: card)
-                }
+        Grid(viewModel.cards) { card in
+            CardView(card: card).onTapGesture {
+                viewModel.choose(card: card)
             }
-        }.padding()
+            .padding(5)
+        }
+        .padding()
         .font(.largeTitle)
         .foregroundColor(.orange)
     }
@@ -49,7 +50,7 @@ struct CardView: View {
     // MARK: - Drawing Constants
     
     let cornerRadius: CGFloat = 10.0
-    let edgeLineWidth: CGFloat = 3
+    let edgeLineWidth: CGFloat = 4
     let fontScaleFactor: CGFloat = 0.75
     
     func fontSize(for size: CGSize) -> CGFloat {
