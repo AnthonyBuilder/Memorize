@@ -4,7 +4,7 @@
 //
 //  Created by Anthony José on 30/03/21.
 //
-// View
+//  View
 
 import SwiftUI
 
@@ -42,7 +42,9 @@ struct CardView: View {
                 RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
                 Text(card.content)
             } else {
-                RoundedRectangle(cornerRadius: cornerRadius).fill()
+                if !card.isMatched {
+                    RoundedRectangle(cornerRadius: cornerRadius).fill()
+                }
             }
         }.font(Font.system(size: fontSize(for: size)))
     }
